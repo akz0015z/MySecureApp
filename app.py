@@ -2,16 +2,16 @@ from flask import Flask, request, render_template, redirect, session
 import sqlite3
 
 app = Flask(__name__)
-app.secret_key = "123"   # INSECURE: hardcoded weak secret key
+app.secret_key = "123"   # this is a insecure hardcoded weak secret key example
 
 def get_db():
     conn = sqlite3.connect("database.db")
     conn.row_factory = sqlite3.Row
     return conn
 
-# ------------------------------------
-# Initialize DB (Run once)
-# ------------------------------------
+
+# this is where we running the database
+
 def init_db():
     conn = get_db()
     c = conn.cursor()
@@ -31,17 +31,17 @@ def init_db():
 
 init_db()
 
-# ------------------------------------
-# Register (INSECURE)
-# ------------------------------------
+
+# this is the insecure version of registration
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
         username = request.form["username"]
         email = request.form["email"]
-        password = request.form["password"]  # stored in plaintext
+        password = request.form["password"]  # password stored in plaintext
 
-        # INSECURE: SQL Injection vulnerability
+        # this is the insecure sql injection
         conn = get_db()
         conn.execute(f"INSERT INTO users (username, email, password, bio) VALUES ('{username}', '{email}', '{password}', '')")
         conn.commit()
@@ -51,9 +51,9 @@ def register():
 
     return render_template("register.html")
 
-# ------------------------------------
-# Login (INSECURE + Reflected XSS)
-# ------------------------------------
+
+# this is the insecure login and reflected xss
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     error = request.args.get("error", "")
@@ -64,7 +64,7 @@ def login():
 
         conn = get_db()
 
-        # INSECURE SQL INJECTION LOGIN
+        # this is the insecure sql injection login
         query = f"SELECT * FROM users WHERE email='{email}' AND password='{password}'"
         user = conn.execute(query).fetchone()
         conn.close()
@@ -73,14 +73,14 @@ def login():
             session["user_id"] = user["id"]
             return redirect("/profile")
         else:
-            # Reflected XSS
+            # this is the reflected xss
             return redirect("/login?error=Invalid+login:+"+email)
 
     return render_template("login.html", error=error)
 
-# ------------------------------------
-# Profile (Stored XSS Vulnerability)
-# ------------------------------------
+
+# this is the stored xss vulnreability profile 
+
 @app.route("/profile")
 def profile():
     if "user_id" not in session:
@@ -92,9 +92,9 @@ def profile():
 
     return render_template("profile.html", user=user)
 
-# ------------------------------------
-# Edit Profile (Stored XSS Injection Point)
-# ------------------------------------
+
+# this is the edit profile (stored XSS injection point)
+
 @app.route("/edit_profile", methods=["GET", "POST"])
 def edit_profile():
     if "user_id" not in session:
@@ -112,8 +112,8 @@ def edit_profile():
 
     return render_template("edit_profile.html")
 
-# ------------------------------------
-# Run app
-# ------------------------------------
+
+# where we run app
+
 if __name__ == "__main__":
     app.run(debug=True)
