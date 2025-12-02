@@ -8,23 +8,23 @@ import sqlite3
 import logging
 import os
 
-# ---------------------------------------------------------
-# APP CONFIGURATION
-# ---------------------------------------------------------
+
+# My App
+
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = os.urandom(32)        # SECURE: strong random secret key
+app.config["SECRET_KEY"] = os.urandom(32)        # This is the secure version with strong random secret key
 bcrypt = Bcrypt(app)
 
-# Security headers
+# the security headers
 Talisman(app, content_security_policy={
     "default-src": ["'self'"],
     "style-src": ["'self'", "'unsafe-inline'"],
 })
 
-# ---------------------------------------------------------
-# LOGGING
-# ---------------------------------------------------------
+
+# The logging part
+
 
 if not os.path.exists("logs"):
     os.makedirs("logs")
@@ -35,9 +35,9 @@ logging.basicConfig(
     format="%(asctime)s %(levelname)s: %(message)s"
 )
 
-# ---------------------------------------------------------
-# DATABASE
-# ---------------------------------------------------------
+
+# the database
+
 
 def get_db():
     conn = sqlite3.connect("database.db")
@@ -64,18 +64,18 @@ def init_db():
 
 init_db()
 
-# ---------------------------------------------------------
-# HOMEPAGE REDIRECT (NEW)
-# ---------------------------------------------------------
+
+# the homepage redirect to login
+
 
 @app.route("/")
 def home():
     return redirect("/login")
 
 
-# ---------------------------------------------------------
-# FORMS (CSRF PROTECTED)
-# ---------------------------------------------------------
+
+# the csrf protected coding
+
 
 class RegisterForm(FlaskForm):
     username = StringField("Username", validators=[DataRequired(), Length(min=3)])
@@ -92,9 +92,9 @@ class EditProfileForm(FlaskForm):
     bio = TextAreaField("Bio", validators=[Length(max=300)])
 
 
-# ---------------------------------------------------------
-# ROUTES
-# ---------------------------------------------------------
+
+# app's routes
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -190,9 +190,9 @@ def logout():
     return redirect("/login")
 
 
-# ---------------------------------------------------------
-# START APP
-# ---------------------------------------------------------
+
+# starting the app
+
 
 if __name__ == "__main__":
     app.run(debug=True)
