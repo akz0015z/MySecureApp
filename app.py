@@ -171,17 +171,23 @@ def edit_profile():
     form = EditProfileForm()
 
     if form.validate_on_submit():
-        bio = form.bio.data.replace("<", "&lt;").replace(">", "&gt;")   # escape XSS
+        bio = form.bio.data.strip()
+
+        # VALIDATION: prevent empty bio
+        if bio == "":
+            flash("Bio cannot be empty", "error")
+            return redirect("/edit_profile")
 
         conn = get_db()
         conn.execute("UPDATE users SET bio = ? WHERE id = ?", (bio, session["user_id"]))
         conn.commit()
         conn.close()
 
-        logging.info(f"User updated bio (user_id={session['user_id']})")
+        flash("Profile updated!", "success")
         return redirect("/profile")
 
     return render_template("edit_profile.html", form=form)
+
 
 
 @app.route("/logout")
