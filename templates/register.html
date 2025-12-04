@@ -11,6 +11,23 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            padding-top: 80px; 
+        }
+
+        
+        .navbar {
+            width: 100%;
+            background: #ff4da6; /* PINK NAVBAR */
+            padding: 18px 0;
+            text-align: center;
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
         }
 
         .container {
@@ -73,11 +90,16 @@
 </head>
 <body>
 
+
+<div class="navbar">
+    Secure Application Website
+</div>
+
 <div class="container">
 
     <h2>Register</h2>
 
-    <!-- Flash Messages -->
+    
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}
