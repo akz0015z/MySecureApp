@@ -46,6 +46,7 @@
             color: white;
             font-size: 15px;
             border-radius: 5px;
+            cursor: pointer;
         }
 
         a {
@@ -54,12 +55,36 @@
             margin-top: 10px;
             color: #ff1a8c;
         }
+
+        /* Flash styling */
+        .flash {
+            padding: 10px;
+            margin-bottom: 12px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .flash.error {
+            background: #ffccd5;
+            color: #a1002c;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
+
     <h2>Register</h2>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 
     <form method="POST">
         {{ form.csrf_token }}
@@ -77,6 +102,7 @@
     </form>
 
     <a href="/login">Login</a>
+
 </div>
 
 </body>
