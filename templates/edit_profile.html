@@ -9,16 +9,31 @@
             height: 100vh;
             margin: 0;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
         }
 
+        
+        .navbar {
+            width: 100%;
+            background: #007bff; /* Blue */
+            padding: 15px 0;
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        
         .container {
             background: white;
-            width: 380px;
+            width: 420px;
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            margin-top: 40px;
+            margin-bottom: 40px;
         }
 
         textarea {
@@ -28,6 +43,7 @@
             border-radius: 5px;
             border: 1px solid #ccc;
             margin-bottom: 12px;
+            font-size: 14px;
         }
 
         button {
@@ -37,38 +53,39 @@
             color: white;
             border: none;
             border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
         }
 
-        .flash-error {
-            color: red;
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 12px;
+            color: #007bff;
             font-weight: bold;
-            margin-bottom: 10px;
+            text-decoration: none;
         }
 
-        .flash-success {
-            color: green;
+       
+        .footer {
+            width: 100%;
+            text-align: center;
+            padding: 12px 0;
             font-weight: bold;
-            margin-bottom: 10px;
+            color: black;
+            background: rgba(255,255,255,0.4);
         }
     </style>
 </head>
 <body>
 
+<div class="navbar">
+    Secure Application Website
+</div>
+
 <div class="container">
     <h2>Edit Profile</h2>
 
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages %}
-          {% if category == "error" %}
-            <p class="flash-error">{{ message }}</p>
-          {% else %}
-            <p class="flash-success">{{ message }}</p>
-          {% endif %}
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
-    
     <form method="POST">
         {{ form.csrf_token }}
         {{ form.bio.label }}<br>
@@ -77,6 +94,10 @@
     </form>
 
     <a href="/profile">Back</a>
+</div>
+
+<div class="footer">
+    Developed by Mani, CA3
 </div>
 
 </body>
