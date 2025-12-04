@@ -173,7 +173,6 @@ def edit_profile():
     if form.validate_on_submit():
         bio = form.bio.data.strip()
 
-        # VALIDATION: prevent empty bio
         if bio == "":
             flash("Bio cannot be empty", "error")
             return redirect("/edit_profile")
