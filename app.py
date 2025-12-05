@@ -65,7 +65,9 @@ def login():
         conn = get_db()
 
         # this is the insecure sql injection login
-        query = f"SELECT * FROM users WHERE email='{email}' AND password='{password}'"
+        query = f"SELECT * FROM users WHERE email = '{email}' AND password = '{password}'"
+        print("INSECURE SQL QUERY:", query)  
+
         user = conn.execute(query).fetchone()
         conn.close()
 
@@ -73,10 +75,11 @@ def login():
             session["user_id"] = user["id"]
             return redirect("/profile")
         else:
-            # this is the reflected xss
-            return redirect("/login?error=Invalid+login:+"+email)
+            # REFLECTED XSS
+            return redirect("/login?error=Invalid+login:+" + email)
 
     return render_template("login.html", error=error)
+
 
 
 # this is the stored xss vulnreability profile 
