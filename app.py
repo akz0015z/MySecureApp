@@ -198,16 +198,9 @@ def logout():
 def apply_security_headers(response):
     # this prvents XSS
     response.headers["Content-Security-Policy"] = "default-src 'self'"
-
-    # prevents MIME-sniffing
     response.headers["X-Content-Type-Options"] = "nosniff"
-
-    # basic XSS protection
     response.headers["X-XSS-Protection"] = "1; mode=block"
-
-    # preventing clickjacking
     response.headers["X-Frame-Options"] = "DENY"
-
     return response
 
 
