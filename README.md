@@ -28,78 +28,122 @@ git clone https://github.com/akz0015z/MySecureApp.git
 cd MySecureApp
 
 ```
-🔴Running the Insecure Version (Intentionally Vulnerable)
+# 🔴 Running the Insecure Version (Intentionally Vulnerable)
 
-Switch to insecure branch: git checkout insecure
-Install dependencies: pip install -r requirements.txt
-Run the application: python app.py
-Insecure Features (on purpose):
+**Switch to insecure branch:**  
+```bash
+git checkout insecure
+```
 
-❌ SQL Injection vulnerabilities
-❌ Stored XSS
-❌ Reflected XSS
-❌ DOM-Based XSS
-❌ Plaintext password storage
-❌ No CSRF protection
-❌ No security headers
-❌ Weak session management
-❌ No logging or monitoring
+**Install dependencies:**  
+```bash
+pip install -r requirements.txt
+```
 
-The insecure version is used for:
-Demonstrating vulnerabilities
-ZAP scanning
-Documentation of OWASP Top 10 issues
+**Run the application:**  
+```bash
+python app.py
+```
 
+### ❌ Insecure Features (on purpose)
+- ❌ SQL Injection vulnerabilities  
+- ❌ Stored XSS  
+- ❌ Reflected XSS  
+- ❌ DOM-Based XSS  
+- ❌ Plaintext password storage  
+- ❌ No CSRF protection  
+- ❌ No security headers  
+- ❌ Weak session management  
+- ❌ No logging or monitoring  
 
-🟢 Running the Secure Version (Fully Patched)
-
-Switch to secure branch: git checkout secure
-Install secure dependencies: pip install flask-wtf flask-bcrypt flask-talisman email-validator
-                             pip install -r requirements.txt
-
-Run the application: python app.py
-
-Secure Features Implemented:
-
-✅ Parameterized SQL (SQL Injection Prevention)
-✅ Password Hashing (Flask-Bcrypt)
-✅ CSRF Protection (Flask-WTF)
-✅ Security Headers & CSP (Flask-Talisman)
-✅ Sanitized Inputs (XSS Mitigation)
-✅ Strong Session Management
-✅ Logging & Monitoring (logs/app.log)
-✅ Homepage redirect to /login
+**The insecure version is used for:**  
+- Demonstrating vulnerabilities  
+- ZAP scanning  
+- Documentation of OWASP Top 10 issues  
 
 
-📁 Project Technology Stack
-Python 3
-Flask Web Framework
-SQLite3 database
-Flask-WTF (CSRF protection)
-Flask-Bcrypt (Password hashing)
-Flask-Talisman (Security headers + CSP)
-HTML / CSS Templates
-Git & GitHub version control
+---
 
-🔧 Branch Switching Commands
-git checkout insecure    # Use the insecure version
-git checkout secure      # Use the secure version
-git checkout main        # Default branch (not used for development)
+# 🟢 Running the Secure Version (Fully Patched)
 
-🧩 Logging (Secure Version Only)
+**Switch to secure branch:**  
+```bash
+git checkout secure
+```
+
+**Install secure dependencies:**  
+```bash
+pip install flask-wtf flask-bcrypt flask-talisman email-validator
+pip install -r requirements.txt
+```
+
+**Run the application:**  
+```bash
+python app.py
+```
+
+---
+
+## ✅ Secure Features Implemented
+- ✅ Parameterized SQL (SQL Injection Prevention)  
+- ✅ Password Hashing (Flask-Bcrypt)  
+- ✅ CSRF Protection (Flask-WTF)  
+- ✅ Security Headers & CSP (Flask-Talisman)  
+- ✅ Sanitized Inputs (XSS Mitigation)  
+- ✅ Strong Session Management  
+- ✅ Logging & Monitoring (`logs/app.log`)  
+- ✅ Homepage redirect to `/login`  
+
+
+---
+
+# 📁 Project Technology Stack
+- Python 3  
+- Flask Web Framework  
+- SQLite3 Database  
+- Flask-WTF (CSRF protection)  
+- Flask-Bcrypt (Password hashing)  
+- Flask-Talisman (Security Headers + CSP)  
+- HTML / CSS Templates  
+- Git & GitHub version control  
+
+
+---
+
+# 🛠 Branch Switching Commands
+```bash
+git checkout insecure   # Use the insecure version
+git checkout secure     # Use the secure version
+git checkout main       # Default branch (not used for development)
+```
+
+
+---
+
+# 🌿 Logging (Secure Version Only)
+
+Logs stored at:
+```
 logs/app.log
+```
 
 Logged events include:
-User registration
-User login
-Profile updates
-Timestamps for monitoring
-
-👤 Author
-Student: akz0015z
-Developed for: Secure Application Programming
+- User registration  
+- User login  
+- Profile updates  
+- Timestamps for monitoring  
 
 
-📎 Repo Link
+---
+
+# 👤 Author
+**Student:** akz0015z  
+**Developed for:** Secure Application Programming  
+
+
+---
+
+# 🔗 Repo Link  
 https://github.com/akz0015z/MySecureApp
+
 ---
