@@ -79,7 +79,7 @@ pip install -r requirements.txt
 
 **Run the application:**  
 ```bash
-python app.py
+python app.py then go to logs/app.log to find the host link!
 ```
 
 ---
