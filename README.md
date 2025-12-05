@@ -42,7 +42,7 @@ pip install -r requirements.txt
 
 **Run the application:**  
 ```bash
-python app.py
+python app.py and add /login beside the URL to access the page
 ```
 
 ### ❌ Insecure Features (on purpose)
